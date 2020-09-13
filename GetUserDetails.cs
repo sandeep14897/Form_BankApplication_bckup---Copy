@@ -58,7 +58,7 @@ namespace Form_BankApplication
                 textBox2.Text = GetPhoneNumber.TrimEnd();
                 textBox3.Text = GetPinNumber.TrimEnd();
                 textBox4.Text = GetBalanceAmount.TrimEnd();
-
+                button2.Enabled = true;
                 //label3.Visible = false;
                 SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
                 String Query = "Select UserImage from dbo.User_Data Where Username = '" + GetUsername + "'";
@@ -105,9 +105,9 @@ namespace Form_BankApplication
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
             label5.Visible = false;
             label6.Visible = false;
             //label7.Visible = false;
