@@ -168,7 +168,7 @@ namespace Form_BankApplication
                     {
                         try
                         {
-                            //String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
+                            String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
                             cmd.ExecuteNonQuery();
                             label5.Visible = false;
                             //label7.Visible = false;

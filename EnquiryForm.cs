@@ -124,6 +124,7 @@ namespace Form_BankApplication
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            //MessageBox.Show(Username);
             String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
@@ -239,7 +240,7 @@ namespace Form_BankApplication
                 FileStream fs = new FileStream(imgLoc, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
                 img = br.ReadBytes((int)fs.Length);
-                //Console.WriteLine(Username);
+                //MessageBox.Show(Username);
 
                 String UpdatePic = "Update dbo.User_Data SET UserImage= (@img) Where Username = '" + Username + "'";
                 SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
