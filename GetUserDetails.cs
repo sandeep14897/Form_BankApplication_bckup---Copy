@@ -19,6 +19,7 @@ namespace Form_BankApplication
         public String GetPinNumber;
         public String GetBalanceAmount;
         public byte[] GetUserImage;
+        
         public string passingvalue
         {
             get { return GetUsername; }
@@ -131,7 +132,16 @@ namespace Form_BankApplication
                 sdr.Read();
                 try
                 {
-                    if (sdr["Username"].ToString().Trim().Equals(textBox1.Text))
+                    //MessageBox.Show(sdr["Username"].ToString().Trim());
+                    //MessageBox.Show(textBox1.Text);
+
+                    //MessageBox.Show(sdr["PhoneNumber"].ToString().Trim());
+                    //MessageBox.Show(textBox2.Text);
+
+                    //MessageBox.Show(sdr["PinNumber"].ToString().Trim());
+                    //MessageBox.Show(textBox3.Text);
+
+                    if (sdr["Username"].ToString().Trim().Equals(textBox1.Text) && sdr["PhoneNumber"].ToString().Trim().Equals(textBox2.Text) && sdr["PinNumber"].ToString().Trim().Equals(textBox3.Text))
                     {
                         label6.Visible = false;
                         //label7.Visible = false;
@@ -141,9 +151,58 @@ namespace Form_BankApplication
                         textBox2.Text = "";
                         textBox3.Text = "";
                     }
+                    else 
+                    {
+                        con.Close();
+                        String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + textBox3.Text + "' WHERE Username = '" + GetUsername + "'";
+                        SqlCommand cmd = new SqlCommand(Query, con);
+                        cmd.Connection = con;
+                        con.Open();
+                        cmd.Parameters.AddWithValue("Username", textBox1.Text);
+                        cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
+                        cmd.Parameters.AddWithValue("PinNumber", textBox3.Text);
+
+                        if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 4)
+                        {
+                            label5.Visible = false;
+                            label6.Visible = false;
+                            label8.Visible = true;
+                            //label7.Visible = true;
+                            label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 4 digits";
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            textBox3.Text = "";
+                        }
+                        else
+                        {
+                            try
+                            {
+                                String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
+                                cmd.ExecuteNonQuery();
+                                label5.Visible = false;
+                                //label7.Visible = false;
+                                label8.Visible = false;
+                                label6.Visible = true;
+                                EnquiryForm enquiryForm = new EnquiryForm();
+                                enquiryForm.Username = textBox1.Text;
+                                button3.Enabled = false;
+                            }
+                            catch
+                            {
+                                label5.Visible = false;
+                                label6.Visible = false;
+                                //label7.Visible = false;
+                                label8.Visible = true;
+                                textBox1.Text = "";
+                                textBox2.Text = "";
+                                textBox3.Text = "";
+                            }
+                        }
+                    }
                 }
                 catch (Exception)
                 {
+                    //MessageBox.Show("999999999999");
                     con.Close();
                     String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + textBox3.Text + "' WHERE Username = '" + GetUsername + "'";
                     SqlCommand cmd = new SqlCommand(Query, con);
