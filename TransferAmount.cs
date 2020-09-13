@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Numerics;
 using System.IO;
+using System.Diagnostics;
 
 namespace Form_BankApplication
 {
@@ -19,19 +20,23 @@ namespace Form_BankApplication
         public String PhoneNumber;
         public String PinNumber;
         public String BalanceAmount;
-        public string passingvalue {
+        public string passingvalue
+        {
             get { return Username; }
             set { Username = value; }
         }
-        public string passingvalue1 {
+        public string passingvalue1
+        {
             get { return PhoneNumber; }
             set { PhoneNumber = value; }
         }
-        public string passingvalue3 {
+        public string passingvalue3
+        {
             get { return BalanceAmount; }
             set { BalanceAmount = value; }
         }
-        public string passingvalue2 {
+        public string passingvalue2
+        {
             get { return PinNumber; }
             set { PinNumber = value; }
         }
@@ -39,62 +44,107 @@ namespace Form_BankApplication
         public TransferAmount()
         {
             InitializeComponent();
+            SuccessTrans.Visible = false;
+            notAllowed.Visible = false;
+            WrongDetails.Visible = false;
+            success.Visible = false;
+            insufficientLabel.Visible = false;
+            Allrequired.Visible = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
+            notAllowed.Visible = false;
+            WrongDetails.Visible = false;
+            success.Visible = false;
+            insufficientLabel.Visible = false;
+            Allrequired.Visible = false;
             SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
-            String Query = "Select * from dbo.User_Data Where Username = '" + textBox1.Text + "' AND PhoneNumber = '"+textBox2.Text+"'";
+            String Query = "Select * from dbo.User_Data Where Username = '" + textBox1.Text + "' AND PhoneNumber = '" + textBox2.Text + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
             con.Open();
             cmd.ExecuteNonQuery();
-           try
+            try
             {
-                if (BigInteger.Parse(textBox3.Text.Trim()) > BigInteger.Parse(BalanceAmount.TrimEnd())) {
-                    MessageBox.Show("Insufficient Funds !");
-                    textBox3.Text = "";
-                }
-                if (textBox1.Text.Trim() == "" || textBox2.Text.Trim() == "" || textBox3.Text.Trim() == "") {
-                    MessageBox.Show("Please, fill all the input fields !");
-                }
-                if (BigInteger.Parse(textBox3.Text.Trim()) <= BigInteger.Parse(BalanceAmount.TrimEnd()) && Username.TrimEnd() != textBox1.Text.TrimEnd())
+                if (textBox1.Text.Trim() == "" || textBox2.Text.Trim() == "" || textBox3.Text.Trim() == "")
                 {
-                    using (SqlDataReader sdr = cmd.ExecuteReader())
-                    {
-                        sdr.Read();
-                        String Str_BankBalance = sdr["BalanceAmount"].ToString();
-                        BigInteger BankBalance = BigInteger.Parse(Str_BankBalance);
-                        BigInteger AmountDeposit = BigInteger.Parse(textBox3.Text) + BankBalance;
-                        BigInteger FinalBalance = BigInteger.Parse(BalanceAmount) - BigInteger.Parse(textBox3.Text);
-                        String Query2 = "Update dbo.User_Data SET BalanceAmount= " + AmountDeposit + " Where Username = '" + textBox1.Text + "'";
-                        String updateBalanceQuery = "Update dbo.User_Data SET BalanceAmount= " + FinalBalance + " Where Username = '" + Username + "'";
-                        SqlCommand cmd2 = new SqlCommand(Query2, con);
-                        SqlCommand cmd3 = new SqlCommand(updateBalanceQuery, con);
-                        cmd2.Parameters.AddWithValue("BalanceAmount", Convert.ToString(AmountDeposit));
-                        String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
-                        sdr.Close();
-                        cmd2.ExecuteNonQuery();
-                        cmd3.ExecuteNonQuery();
-                        MessageBox.Show("Amount : " + textBox3.Text + " Transffered succesfully");
-                        textBox2.Text = "";
-                        textBox3.Text = "";
-                    }
+                    Allrequired.Visible = true;
+                    notAllowed.Visible = false;
+                    WrongDetails.Visible = false;
+                    success.Visible = false;
+                    insufficientLabel.Visible = false;
+                    // MessageBox.Show("Please, fill all the input fields !");
+                }
+                else
+                {
                     if (Username.TrimEnd() == textBox1.Text.TrimEnd())
                     {
-                        MessageBox.Show("Not allowed to transfer to same account ! ");
+                        notAllowed.Visible = true;
+                        WrongDetails.Visible = false;
+                        success.Visible = false;
+                        insufficientLabel.Visible = false;
+                        Allrequired.Visible = false;
+                    }
+                    else
+                    {
+                        if (BigInteger.Parse(textBox3.Text.Trim()) <= BigInteger.Parse(BalanceAmount.TrimEnd()) && Username.TrimEnd() != textBox1.Text.TrimEnd())
+                        {
+                            using (SqlDataReader sdr = cmd.ExecuteReader())
+                            {
+                                sdr.Read();
+                                String Str_BankBalance = sdr["BalanceAmount"].ToString();
+                                BigInteger BankBalance = BigInteger.Parse(Str_BankBalance);
+                                BigInteger AmountDeposit = BigInteger.Parse(textBox3.Text) + BankBalance;
+                                BigInteger FinalBalance = BigInteger.Parse(BalanceAmount) - BigInteger.Parse(textBox3.Text);
+                                String Query2 = "Update dbo.User_Data SET BalanceAmount= " + AmountDeposit + " Where Username = '" + textBox1.Text + "'";
+                                String updateBalanceQuery = "Update dbo.User_Data SET BalanceAmount= " + FinalBalance + " Where Username = '" + Username + "'";
+                                SqlCommand cmd2 = new SqlCommand(Query2, con);
+                                SqlCommand cmd3 = new SqlCommand(updateBalanceQuery, con);
+                                cmd2.Parameters.AddWithValue("BalanceAmount", Convert.ToString(AmountDeposit));
+                                String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
+                                sdr.Close();
+                                cmd2.ExecuteNonQuery();
+                                cmd3.ExecuteNonQuery();
+                                success.Visible = true;
+                                // MessageBox.Show("Amount : " + textBox3.Text + " Transffered succesfully");
+                                textBox2.Text = "";
+                                textBox3.Text = "";
+                                SuccessTrans.Visible = true;
+                                notAllowed.Visible = false;
+                                WrongDetails.Visible = false;
+                                success.Visible = false;
+                                insufficientLabel.Visible = false;
+                                Allrequired.Visible = false;
+                            }
+                        }
+                        else
+                        {
+                            if (BigInteger.Parse(textBox3.Text.Trim()) > BigInteger.Parse(BalanceAmount.TrimEnd()))
+                            {
+                                insufficientLabel.Visible = true;
+                                notAllowed.Visible = false;
+                                WrongDetails.Visible = false;
+                                success.Visible = false;
+                                Allrequired.Visible = false;
+                                textBox3.Text = "";
+                                textBox2.Text = "";
+                                textBox3.Text = "";
+                            }
+                        }
+
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Username or Phone Number is incorrect !");
+                WrongDetails.Visible = true;
             }
             con.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
             Hide();
             GetUserDetails eForm1 = new GetUserDetails();
@@ -104,16 +154,10 @@ namespace Form_BankApplication
             eForm.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
-            Hide();
-            LoginForm loginForm = new LoginForm();
+            ExitApplication loginForm = new ExitApplication();
             loginForm.Show();
-        }
-
-        private void TransferAmount_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -54,6 +54,12 @@
       <DependentUpon>EnquiryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="eventargs.cs" />
+    <Compile Include="ExitApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExitApplication.Designer.cs">
+      <DependentUpon>ExitApplication.cs</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPinNumber.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </Compile>
     <EmbeddedResource Include="EnquiryForm.resx">
       <DependentUpon>EnquiryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExitApplication.resx">
+      <DependentUpon>ExitApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgetPinNumber.resx">
       <DependentUpon>ForgetPinNumber.cs</DependentUpon>

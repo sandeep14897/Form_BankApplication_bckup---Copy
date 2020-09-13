@@ -19,29 +19,12 @@ namespace Form_BankApplication
         public AddUser()
         {
             InitializeComponent();
+            SuccessLabel.Visible = false;
+            EmptyFields.Visible = false;
+            validCredentials.Visible = false;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
             con.Open();
@@ -59,35 +42,66 @@ namespace Form_BankApplication
                 {
                     if (sdr["Username"].ToString().Trim().Equals(textBox1.Text))
                     {
-                        MessageBox.Show("User already exists !");
+                        SuccessLabel.Visible = false;
+                        EmptyFields.Visible = true;
+                        validCredentials.Visible = false;
+                        EmptyFields.Text = "Username already exists !";
+                        textBox1.Text = "";
+                        textBox2.Text = "";
+                        textBox3.Text = "";
+                        textBox4.Text = "";
                     }
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                     con.Close();
                     String Query = "INSERT INTO dbo.User_Data(Username,PhoneNumber,BalanceAmount,PinNumber) VALUES (@Username,@PhoneNumber,@BalanceAmount,@PinNumber)";
                     SqlCommand cmd = new SqlCommand(Query, con);
                     cmd.Connection = con;
                     con.Open();
-                    //cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("Username", textBox1.Text);
                     cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
                     cmd.Parameters.AddWithValue("PinNumber", textBox3.Text);
                     cmd.Parameters.AddWithValue("BalanceAmount", textBox4.Text);
 
-                    if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox4.Text.TrimEnd() == "")
+                    if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox4.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 4 )
+
                     {
-                        MessageBox.Show("No Fields should be empty ! Please, fill all the fields.");
+                        SuccessLabel.Visible = false;
+                        EmptyFields.Visible = true;
+                        validCredentials.Visible = true;
+                        EmptyFields.Text = "Please, provide all the fields in correct format!";
+                        validCredentials.Text = "Phone number should have 10 digits Or Pin Number should have 4 digits !";
+                        textBox1.Text = "";
+                        textBox2.Text = "";
+                        textBox3.Text = "";
+                        textBox4.Text = "";
                     }
                     else
-                    {    
-                      try
-                      {
+                    {
+                        try
+                        {
                             String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("User added Successfully !");
-                      }
-                       catch {
-                            MessageBox.Show("Please, provide details in correct format");
+                            EmptyFields.Visible = false;
+                            SuccessLabel.Visible = true;
+                            validCredentials.Visible = false;
+                            SuccessLabel.Text = "User added Successfully";
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            textBox3.Text = "";
+                            textBox4.Text = "";
+
+                        }
+                        catch
+                        {
+                            EmptyFields.Visible = false;
+                            SuccessLabel.Visible = false;
+                            validCredentials.Visible = false;
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            textBox3.Text = "";
+                            textBox4.Text = "";
                         }
                     }
                 }
@@ -95,12 +109,7 @@ namespace Form_BankApplication
             con.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click_1(object sender, EventArgs e)
         {
             Hide();
             LoginForm loginForm = new LoginForm();

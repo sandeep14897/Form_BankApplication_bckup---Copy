@@ -11,7 +11,6 @@ namespace Form_BankApplication
 {
     static class Program
     {
-        private static object webBrowser1;
 
         [STAThread]
         static void Main()
