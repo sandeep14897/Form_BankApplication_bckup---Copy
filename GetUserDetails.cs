@@ -252,5 +252,11 @@ namespace Form_BankApplication
             }
             con.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ExitApplication e1 = new ExitApplication();
+            e1.Show();
+        }
     }
 }

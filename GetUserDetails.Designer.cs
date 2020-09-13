@@ -53,6 +53,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UserImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -61,7 +62,7 @@
             // UserImage
             // 
             this.UserImage.Image = ((System.Drawing.Image)(resources.GetObject("UserImage.Image")));
-            this.UserImage.Location = new System.Drawing.Point(533, 1);
+            this.UserImage.Location = new System.Drawing.Point(536, 112);
             this.UserImage.Name = "UserImage";
             this.UserImage.Size = new System.Drawing.Size(146, 168);
             this.UserImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -315,6 +316,18 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.IndianRed;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(597, -2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 44);
+            this.button4.TabIndex = 68;
+            this.button4.Text = "Log Out";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // GetUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -323,6 +336,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(682, 653);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
@@ -388,5 +402,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
