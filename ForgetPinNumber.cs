@@ -37,6 +37,8 @@ namespace Form_BankApplication
                     if (sdr["PhoneNumber"].ToString().TrimEnd() == textBox2.Text && sdr["Username"].ToString().TrimEnd() == textBox1.Text)
                     {
                         String PinNumber = sdr["PinNumber"].ToString();
+                        WrongDetails.Visible = false;
+                        pinNumberText.Enabled = false;
                         pinNumberText.Text = PinNumber;
                         //MessageBox.Show("The Pin Number is : " + PinNumber);
                     }
@@ -46,6 +48,8 @@ namespace Form_BankApplication
                         WrongDetails.Visible = true;
                         textBox1.Text = "";
                         textBox2.Text = "";
+                        pinNumberText.Text = "";
+                        pinNumberText.Enabled = false;
                     }
                 }
             }
@@ -55,6 +59,8 @@ namespace Form_BankApplication
                 WrongDetails.Visible = true;
                 textBox1.Text = "";
                 textBox2.Text = "";
+                pinNumberText.Text = "";
+                pinNumberText.Enabled = false;
             }
             con.Close();
         }
