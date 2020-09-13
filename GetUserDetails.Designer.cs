@@ -320,9 +320,9 @@
             // 
             this.button4.BackColor = System.Drawing.Color.IndianRed;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(597, -2);
+            this.button4.Location = new System.Drawing.Point(596, 1);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(85, 44);
+            this.button4.Size = new System.Drawing.Size(85, 33);
             this.button4.TabIndex = 68;
             this.button4.Text = "Log Out";
             this.button4.UseVisualStyleBackColor = false;

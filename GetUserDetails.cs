@@ -147,9 +147,10 @@ namespace Form_BankApplication
                         //label7.Visible = false;
                         label8.Visible = false;
                         label5.Visible = true;
-                        textBox1.Text = "";
-                        textBox2.Text = "";
-                        textBox3.Text = "";
+                        textBox2.Enabled = false;
+                        textBox3.Enabled = false;
+                        textBox1.Enabled = false;
+                        button3.Enabled = false;
                     }
                     else 
                     {
@@ -169,9 +170,6 @@ namespace Form_BankApplication
                             label8.Visible = true;
                             //label7.Visible = true;
                             label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 4 digits";
-                            textBox1.Text = "";
-                            textBox2.Text = "";
-                            textBox3.Text = "";
                         }
                         else
                         {
