@@ -183,6 +183,9 @@ namespace Form_BankApplication
                                 //label7.Visible = false;
                                 label8.Visible = false;
                                 label6.Visible = true;
+                                textBox2.Enabled = false;
+                                textBox3.Enabled = false;
+                                textBox1.Enabled = false;
                                 EnquiryForm enquiryForm = new EnquiryForm();
                                 enquiryForm.Username = textBox1.Text;
                                 button3.Enabled = false;
