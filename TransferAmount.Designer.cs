@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransferAmount));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Allrequired = new System.Windows.Forms.Label();
+            this.insufficientLabel = new System.Windows.Forms.Label();
             this.success = new System.Windows.Forms.Label();
             this.WrongDetails = new System.Windows.Forms.Label();
             this.notAllowed = new System.Windows.Forms.Label();
@@ -51,8 +53,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.insufficientLabel = new System.Windows.Forms.Label();
-            this.Allrequired = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SuccessTrans)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,6 +87,29 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(882, 397);
             this.panel1.TabIndex = 10;
+            // 
+            // Allrequired
+            // 
+            this.Allrequired.AutoSize = true;
+            this.Allrequired.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Allrequired.ForeColor = System.Drawing.Color.Red;
+            this.Allrequired.Location = new System.Drawing.Point(325, 318);
+            this.Allrequired.Name = "Allrequired";
+            this.Allrequired.Size = new System.Drawing.Size(222, 20);
+            this.Allrequired.TabIndex = 27;
+            this.Allrequired.Text = "Please, fill all the input fields !";
+            // 
+            // insufficientLabel
+            // 
+            this.insufficientLabel.AutoSize = true;
+            this.insufficientLabel.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insufficientLabel.ForeColor = System.Drawing.Color.Red;
+            this.insufficientLabel.Location = new System.Drawing.Point(377, 318);
+            this.insufficientLabel.Name = "insufficientLabel";
+            this.insufficientLabel.Size = new System.Drawing.Size(137, 20);
+            this.insufficientLabel.TabIndex = 26;
+            this.insufficientLabel.Text = "Insufficient funds!";
+            this.insufficientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // success
             // 
@@ -126,7 +149,7 @@
             // SuccessTrans
             // 
             this.SuccessTrans.Image = ((System.Drawing.Image)(resources.GetObject("SuccessTrans.Image")));
-            this.SuccessTrans.Location = new System.Drawing.Point(309, 86);
+            this.SuccessTrans.Location = new System.Drawing.Point(293, 75);
             this.SuccessTrans.Name = "SuccessTrans";
             this.SuccessTrans.Size = new System.Drawing.Size(277, 229);
             this.SuccessTrans.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -303,29 +326,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 14;
             this.pictureBox3.TabStop = false;
-            // 
-            // insufficientLabel
-            // 
-            this.insufficientLabel.AutoSize = true;
-            this.insufficientLabel.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.insufficientLabel.ForeColor = System.Drawing.Color.Red;
-            this.insufficientLabel.Location = new System.Drawing.Point(377, 318);
-            this.insufficientLabel.Name = "insufficientLabel";
-            this.insufficientLabel.Size = new System.Drawing.Size(137, 20);
-            this.insufficientLabel.TabIndex = 26;
-            this.insufficientLabel.Text = "Insufficient funds!";
-            this.insufficientLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Allrequired
-            // 
-            this.Allrequired.AutoSize = true;
-            this.Allrequired.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Allrequired.ForeColor = System.Drawing.Color.Red;
-            this.Allrequired.Location = new System.Drawing.Point(325, 318);
-            this.Allrequired.Name = "Allrequired";
-            this.Allrequired.Size = new System.Drawing.Size(222, 20);
-            this.Allrequired.TabIndex = 27;
-            this.Allrequired.Text = "Please, fill all the input fields !";
             // 
             // TransferAmount
             // 

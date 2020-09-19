@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using System.Numerics;
 using System.IO;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Form_BankApplication
 {
@@ -20,6 +21,11 @@ namespace Form_BankApplication
         public String PhoneNumber;
         public String PinNumber;
         public String BalanceAmount;
+        public String UserLogMessage;
+        public String ReceiptLogMessage;
+        public DateTime MyLogMessageTime = DateTime.Now;
+        public String LogMessageTime;
+
         public string passingvalue
         {
             get { return Username; }
@@ -54,6 +60,7 @@ namespace Form_BankApplication
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            LogMessageTime = Convert.ToString(MyLogMessageTime);
             notAllowed.Visible = false;
             WrongDetails.Visible = false;
             success.Visible = false;
@@ -102,23 +109,44 @@ namespace Form_BankApplication
                                 String updateBalanceQuery = "Update dbo.User_Data SET BalanceAmount= " + FinalBalance + " Where Username = '" + Username + "'";
                                 SqlCommand cmd2 = new SqlCommand(Query2, con);
                                 SqlCommand cmd3 = new SqlCommand(updateBalanceQuery, con);
+
                                 cmd2.Parameters.AddWithValue("BalanceAmount", Convert.ToString(AmountDeposit));
                                 String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
                                 sdr.Close();
+                                UserLogMessage = "You have tranferred "+textBox3.Text+" to "+textBox1.Text+"";
+                                ReceiptLogMessage = "You have Received " + textBox3.Text + " from " +Username+ "";
+                                textBox2.Text = "";
+                                textBox3.Text = "";
                                 cmd2.ExecuteNonQuery();
                                 cmd3.ExecuteNonQuery();
                                 success.Visible = true;
-                                // MessageBox.Show("Amount : " + textBox3.Text + " Transffered succesfully");
-                                textBox2.Text = "";
-                                textBox3.Text = "";
                                 SuccessTrans.Visible = true;
                                 notAllowed.Visible = false;
                                 WrongDetails.Visible = false;
                                 success.Visible = false;
                                 insufficientLabel.Visible = false;
                                 Allrequired.Visible = false;
+                                con.Close();
                             }
-                        }
+                                SqlConnection con2 = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+                                con2.Open();
+                                String LogQuery1 = "Insert into dbo.MessageLog (Username, TimeStamp1, MessageLog) VALUES (@Username, @TimeStamp1, @MessageLog)";
+                                String LogQuery2 = "Insert into dbo.MessageLog (Username, TimeStamp1, MessageLog) VALUES (@Username, @TimeStamp1, @MessageLog)";
+                                SqlCommand cmd4 = new SqlCommand(LogQuery1, con2);
+                                cmd4.Connection = con2;
+                                cmd4.Parameters.AddWithValue("Username", Username.TrimEnd());
+                                cmd4.Parameters.AddWithValue("TimeStamp1", LogMessageTime);
+                                cmd4.Parameters.AddWithValue("MessageLog", UserLogMessage);
+                                int i = cmd4.ExecuteNonQuery();
+                                con2.Close();
+                                con2.Open();
+                                SqlCommand cmd5 = new SqlCommand(LogQuery2, con2);
+                                cmd5.Connection = con2;
+                                cmd5.Parameters.AddWithValue("Username", textBox1.Text);
+                                cmd5.Parameters.AddWithValue("TimeStamp1", LogMessageTime);
+                                cmd5.Parameters.AddWithValue("MessageLog", ReceiptLogMessage);
+                                cmd5.ExecuteNonQuery();
+                    }
                         else
                         {
                             if (BigInteger.Parse(textBox3.Text.Trim()) > BigInteger.Parse(BalanceAmount.TrimEnd()))
@@ -141,7 +169,7 @@ namespace Form_BankApplication
             {
                 WrongDetails.Visible = true;
             }
-            con.Close();
+    con.Close();
         }
 
         private void button3_Click_1(object sender, EventArgs e)

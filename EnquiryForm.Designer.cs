@@ -41,17 +41,18 @@
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.TechnicalIssues = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.Save = new System.Windows.Forms.Button();
+            this.Statement = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -63,9 +64,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.PaleGreen;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(276, 284);
+            this.button1.Location = new System.Drawing.Point(714, 173);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 46);
+            this.button1.Size = new System.Drawing.Size(171, 46);
             this.button1.TabIndex = 0;
             this.button1.Text = "Add Amount";
             this.button1.UseVisualStyleBackColor = false;
@@ -110,7 +111,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.BurlyWood;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(417, 284);
+            this.button2.Location = new System.Drawing.Point(368, 284);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 46);
             this.button2.TabIndex = 5;
@@ -145,7 +146,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.DarkKhaki;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(101, 284);
+            this.button4.Location = new System.Drawing.Point(714, 69);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(171, 46);
             this.button4.TabIndex = 8;
@@ -157,9 +158,9 @@
             // 
             this.button5.BackColor = System.Drawing.Color.CornflowerBlue;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(592, 284);
+            this.button5.Location = new System.Drawing.Point(714, 121);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(190, 46);
+            this.button5.Size = new System.Drawing.Size(171, 46);
             this.button5.TabIndex = 9;
             this.button5.Text = "Transfer Amount";
             this.button5.UseVisualStyleBackColor = false;
@@ -178,6 +179,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.Statement);
             this.panel1.Controls.Add(this.TechnicalIssues);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button6);
@@ -202,14 +204,6 @@
             this.panel1.Size = new System.Drawing.Size(885, 373);
             this.panel1.TabIndex = 13;
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(15, 372);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(900, 1);
-            this.panel5.TabIndex = 63;
-            // 
             // TechnicalIssues
             // 
             this.TechnicalIssues.Image = ((System.Drawing.Image)(resources.GetObject("TechnicalIssues.Image")));
@@ -219,6 +213,46 @@
             this.TechnicalIssues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.TechnicalIssues.TabIndex = 15;
             this.TechnicalIssues.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(2, 240);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(169, 20);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "Updated Successfully!";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(80, 200);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 37);
+            this.button6.TabIndex = 64;
+            this.button6.Text = "Browse";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(7, 199);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(68, 38);
+            this.Save.TabIndex = 65;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click_1);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Black;
+            this.panel5.Location = new System.Drawing.Point(15, 372);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(900, 1);
+            this.panel5.TabIndex = 63;
             // 
             // panel3
             // 
@@ -287,37 +321,15 @@
             this.panel4.Size = new System.Drawing.Size(882, 240);
             this.panel4.TabIndex = 17;
             // 
-            // label3
+            // Statement
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label3.Location = new System.Drawing.Point(2, 240);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(169, 20);
-            this.label3.TabIndex = 66;
-            this.label3.Text = "Updated Successfully!";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(80, 200);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 37);
-            this.button6.TabIndex = 64;
-            this.button6.Text = "Browse";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
-            // 
-            // Save
-            // 
-            this.Save.Location = new System.Drawing.Point(7, 199);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(68, 38);
-            this.Save.TabIndex = 65;
-            this.Save.Text = "Save";
-            this.Save.UseVisualStyleBackColor = true;
-            this.Save.Click += new System.EventHandler(this.Save_Click_1);
+            this.Statement.Location = new System.Drawing.Point(714, 225);
+            this.Statement.Name = "Statement";
+            this.Statement.Size = new System.Drawing.Size(171, 41);
+            this.Statement.TabIndex = 67;
+            this.Statement.Text = "Statement";
+            this.Statement.UseVisualStyleBackColor = true;
+            this.Statement.Click += new System.EventHandler(this.Statement_Click);
             // 
             // EnquiryForm
             // 
@@ -372,5 +384,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button Statement;
     }
 }

@@ -276,6 +276,34 @@ namespace Form_BankApplication
             {
             }
         }
+
+        private void Statement_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            if (!File.Exists("E:\\C#\\Form_BankApplication_bckup - Copy\\LogFiles\\" + Username + "_Statement.txt"))
+            {
+                File.Create("E:\\C#\\Form_BankApplication_bckup - Copy\\LogFiles\\"+Username+"_Statement.txt");
+            }
+            String Query = "Select TOP 10 * from dbo.MessageLog Where Username = '" + Username + "'  ORDER BY CURRENT_TIMESTAMP DESC";
+            SqlCommand cmd = new SqlCommand(Query, con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+            adapter.Fill(dt);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                String TimeStamp = row["TimeStamp1"].ToString();
+                String MessageLog = row["MessageLog"].ToString();
+                File.AppendAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", TimeStamp + "      |      "+MessageLog+ Environment.NewLine);
+               // File.WriteAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", String.Empty);
+            }
+        }
     }
 }
 
