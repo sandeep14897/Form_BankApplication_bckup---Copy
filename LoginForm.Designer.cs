@@ -205,9 +205,6 @@
             this.textBox2.Size = new System.Drawing.Size(276, 20);
             this.textBox2.TabIndex = 11;
             this.textBox2.UseSystemPasswordChar = true;
-            // 
-            // textBox1
-            // 
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -238,6 +235,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.panel4);
             this.panel5.Controls.Add(this.textBox4);
             this.panel5.Controls.Add(this.textBox3);
             this.panel5.Controls.Add(this.pictureBox1);
@@ -343,7 +341,7 @@
             // 
             this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Location = new System.Drawing.Point(-2, 2);
+            this.panel4.Location = new System.Drawing.Point(3, 371);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(884, 278);
             this.panel4.TabIndex = 9;
@@ -356,7 +354,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(882, 853);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);

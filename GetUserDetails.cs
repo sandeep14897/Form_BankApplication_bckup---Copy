@@ -61,7 +61,7 @@ namespace Form_BankApplication
                 textBox4.Text = GetBalanceAmount.TrimEnd();
                 button2.Enabled = true;
                 //label3.Visible = false;
-                SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+                SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
                 String Query = "Select UserImage from dbo.User_Data Where Username = '" + GetUsername + "'";
                 SqlCommand cmd = new SqlCommand(Query, con);
                 cmd.CommandType = CommandType.Text;
@@ -118,7 +118,7 @@ namespace Form_BankApplication
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             con.Open();
 
             String Query1 = "Select * from dbo.User_Data Where Username = '" + textBox1.Text + "'";
@@ -132,15 +132,6 @@ namespace Form_BankApplication
                 sdr.Read();
                 try
                 {
-                    //MessageBox.Show(sdr["Username"].ToString().Trim());
-                    //MessageBox.Show(textBox1.Text);
-
-                    //MessageBox.Show(sdr["PhoneNumber"].ToString().Trim());
-                    //MessageBox.Show(textBox2.Text);
-
-                    //MessageBox.Show(sdr["PinNumber"].ToString().Trim());
-                    //MessageBox.Show(textBox3.Text);
-
                     if (sdr["Username"].ToString().Trim().Equals(textBox1.Text) && sdr["PhoneNumber"].ToString().Trim().Equals(textBox2.Text) && sdr["PinNumber"].ToString().Trim().Equals(textBox3.Text))
                     {
                         label6.Visible = false;
@@ -258,6 +249,11 @@ namespace Form_BankApplication
         {
             ExitApplication e1 = new ExitApplication();
             e1.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

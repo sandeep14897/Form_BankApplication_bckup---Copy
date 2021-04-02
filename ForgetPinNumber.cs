@@ -23,7 +23,7 @@ namespace Form_BankApplication
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             String Query = "Select * from dbo.User_Data Where Username = '" + textBox1.Text + "' AND PhoneNumber='" + textBox2.Text + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;

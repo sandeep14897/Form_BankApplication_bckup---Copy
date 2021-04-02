@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgetPinNumber));
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pinNumberText = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -86,6 +86,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(878, 376);
             this.panel1.TabIndex = 8;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Black;
+            this.panel5.Location = new System.Drawing.Point(0, 375);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(900, 1);
+            this.panel5.TabIndex = 62;
             // 
             // panel4
             // 
@@ -191,9 +199,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(202, 20);
             this.textBox1.TabIndex = 10;
-            // 
-            // label2
-            // 
+
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(351, 153);
             this.label2.Name = "label2";
@@ -267,14 +273,6 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 18;
             this.pictureBox4.TabStop = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(0, 375);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(900, 1);
-            this.panel5.TabIndex = 62;
             // 
             // ForgetPinNumber
             // 

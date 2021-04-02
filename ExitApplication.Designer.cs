@@ -49,6 +49,7 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Do you want to close the Application?";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button1
             // 
@@ -94,6 +95,7 @@
             this.Name = "ExitApplication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ExitApplication";
+            this.Load += new System.EventHandler(this.ExitApplication_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

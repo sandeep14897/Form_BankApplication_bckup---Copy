@@ -31,6 +31,7 @@ namespace Form_BankApplication
             InitializeComponent();
             TechnicalIssues.Visible = false;
             label3.Visible = false;
+            textBox1.Enabled = false;
         }
 
 
@@ -39,7 +40,7 @@ namespace Form_BankApplication
         private void button1_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             try
             {
                 String Query1 = "Select * from dbo.User_Data Where Username = '" + Username + "'";
@@ -74,8 +75,6 @@ namespace Form_BankApplication
             catch (Exception)
             {
                 textBox2.Text = "";
-                // TechnicalIssues.Visible = true;
-                //MessageBox.Show("Exception occured");
             }
 
             con.Close();
@@ -85,7 +84,7 @@ namespace Form_BankApplication
         private void button2_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             try
             {
                 String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
@@ -96,7 +95,7 @@ namespace Form_BankApplication
                 using (SqlDataReader sdr = cmd.ExecuteReader())
                 {
                     sdr.Read();
-                    textBox1.Text = sdr["BalanceAmount"].ToString();
+                    textBox1.Text = "Rs. "+sdr["BalanceAmount"].ToString();
                     textBox2.Text = "";
                     sdr.Close();
                 }
@@ -123,7 +122,7 @@ namespace Form_BankApplication
         // Go to user details page function
         private void button4_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             //MessageBox.Show(Username);
             String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
@@ -160,7 +159,7 @@ namespace Form_BankApplication
         {
             
             Hide();
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
             //MessageBox.Show(Username);
             SqlCommand cmd = new SqlCommand(Query, con);
@@ -185,7 +184,7 @@ namespace Form_BankApplication
             }
             catch (Exception)
             {
-                //MessageBox.Show("User not exits !");
+               
             }
 
             con.Close();
@@ -196,7 +195,7 @@ namespace Form_BankApplication
         {
             TechnicalIssues.Visible = false;
             label3.Visible = false;
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             String Query = "Select UserImage from dbo.User_Data Where Username = '" + Username + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
@@ -216,7 +215,6 @@ namespace Form_BankApplication
                     {
                         MemoryStream ms = new MemoryStream(data);
                         pictureBox2.Image = System.Drawing.Bitmap.FromStream(ms);
-                        //label3.Visible = true;
                     }
                     sdr.Close();
                     Hide();
@@ -243,7 +241,7 @@ namespace Form_BankApplication
                 //MessageBox.Show(Username);
 
                 String UpdatePic = "Update dbo.User_Data SET UserImage= (@img) Where Username = '" + Username + "'";
-                SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+                SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
                 con.Open();
                 SqlCommand comd = new SqlCommand(UpdatePic, con);
                 comd.Parameters.Add(new SqlParameter("@img", img));
@@ -279,7 +277,7 @@ namespace Form_BankApplication
 
         private void Statement_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             if (!File.Exists("E:\\C#\\Form_BankApplication_bckup - Copy\\LogFiles\\" + Username + "_Statement.txt"))
             {
                 File.Create("E:\\C#\\Form_BankApplication_bckup - Copy\\LogFiles\\"+Username+"_Statement.txt");
@@ -295,15 +293,22 @@ namespace Form_BankApplication
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
             adapter.Fill(dt);
-
-            foreach (DataRow row in dt.Rows)
+            try
             {
-                String TimeStamp = row["TimeStamp1"].ToString();
-                String MessageLog = row["MessageLog"].ToString();
-                File.AppendAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", TimeStamp + "      |      "+MessageLog+ Environment.NewLine);
-               // File.WriteAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", String.Empty);
+                foreach (DataRow row in dt.Rows)
+                {
+                    String TimeStamp = row["TimeStamp1"].ToString();
+                    String MessageLog = row["MessageLog"].ToString();
+                    File.AppendAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\" + Username + "_Statement.txt", TimeStamp + "      |      " + MessageLog + Environment.NewLine);
+                    // File.WriteAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", String.Empty);
+                }
             }
+            catch { 
+
+            }
+
         }
+
     }
 }
 
