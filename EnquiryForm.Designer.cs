@@ -41,13 +41,13 @@
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.TechnicalIssues = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.Statement = new System.Windows.Forms.Button();
-            this.TechnicalIssues = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox6 = new System.Windows.Forms.TextBox();
@@ -57,8 +57,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TechnicalIssues)).BeginInit();
+            this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(563, 96);
+            this.label1.Location = new System.Drawing.Point(463, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 19);
             this.label1.TabIndex = 1;
@@ -88,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(565, 178);
+            this.label2.Location = new System.Drawing.Point(465, 178);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 19);
             this.label2.TabIndex = 2;
@@ -96,17 +97,21 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(568, 127);
+            this.textBox1.ForeColor = System.Drawing.Color.Crimson;
+            this.textBox1.Location = new System.Drawing.Point(468, 127);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(262, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(228, 20);
+            this.textBox1.TabIndex = 1;
+            this.textBox1.UseSystemPasswordChar = true;
             // 
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(567, 207);
+            this.textBox2.Location = new System.Drawing.Point(467, 207);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(261, 20);
             this.textBox2.TabIndex = 4;
@@ -115,7 +120,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.BurlyWood;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(608, 310);
+            this.button2.Location = new System.Drawing.Point(508, 310);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(171, 46);
@@ -127,7 +132,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(626, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(526, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 63);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -155,7 +160,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(0, 294);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(225, 79);
+            this.button4.Size = new System.Drawing.Size(225, 76);
             this.button4.TabIndex = 8;
             this.button4.Text = "Get Details";
             this.button4.UseVisualStyleBackColor = false;
@@ -188,12 +193,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.panel6);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.TechnicalIssues);
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button6);
             this.panel1.Controls.Add(this.Save);
-            this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.textBox1);
@@ -204,10 +210,31 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(-3, 238);
+            this.panel1.Location = new System.Drawing.Point(-4, 238);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1356, 373);
+            this.panel1.Size = new System.Drawing.Size(1227, 373);
             this.panel1.TabIndex = 13;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(702, 117);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(42, 36);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 69;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
+            // TechnicalIssues
+            // 
+            this.TechnicalIssues.Image = ((System.Drawing.Image)(resources.GetObject("TechnicalIssues.Image")));
+            this.TechnicalIssues.Location = new System.Drawing.Point(2, 2);
+            this.TechnicalIssues.Name = "TechnicalIssues";
+            this.TechnicalIssues.Size = new System.Drawing.Size(370, 276);
+            this.TechnicalIssues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.TechnicalIssues.TabIndex = 15;
+            this.TechnicalIssues.TabStop = false;
             // 
             // panel6
             // 
@@ -218,9 +245,9 @@
             this.panel6.Controls.Add(this.button1);
             this.panel6.Controls.Add(this.button3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(1131, 0);
+            this.panel6.Location = new System.Drawing.Point(998, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(225, 373);
+            this.panel6.Size = new System.Drawing.Size(225, 369);
             this.panel6.TabIndex = 68;
             // 
             // Statement
@@ -236,16 +263,6 @@
             this.Statement.Text = "Statement";
             this.Statement.UseVisualStyleBackColor = false;
             this.Statement.Click += new System.EventHandler(this.Statement_Click);
-            // 
-            // TechnicalIssues
-            // 
-            this.TechnicalIssues.Image = ((System.Drawing.Image)(resources.GetObject("TechnicalIssues.Image")));
-            this.TechnicalIssues.Location = new System.Drawing.Point(519, 8);
-            this.TechnicalIssues.Name = "TechnicalIssues";
-            this.TechnicalIssues.Size = new System.Drawing.Size(370, 276);
-            this.TechnicalIssues.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.TechnicalIssues.TabIndex = 15;
-            this.TechnicalIssues.TabStop = false;
             // 
             // label3
             // 
@@ -281,18 +298,10 @@
             this.Save.UseVisualStyleBackColor = false;
             this.Save.Click += new System.EventHandler(this.Save_Click_1);
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(15, 372);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(900, 1);
-            this.panel5.TabIndex = 63;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(565, 233);
+            this.panel3.Location = new System.Drawing.Point(465, 233);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(266, 1);
             this.panel3.TabIndex = 14;
@@ -300,7 +309,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(566, 152);
+            this.panel2.Location = new System.Drawing.Point(466, 152);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(266, 1);
             this.panel2.TabIndex = 13;
@@ -311,7 +320,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Microsoft YaHei", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.HideSelection = false;
-            this.textBox6.Location = new System.Drawing.Point(435, 763);
+            this.textBox6.Location = new System.Drawing.Point(351, 763);
             this.textBox6.Margin = new System.Windows.Forms.Padding(0);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
@@ -323,7 +332,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(633, 698);
+            this.pictureBox3.Location = new System.Drawing.Point(549, 698);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(62, 43);
@@ -337,7 +346,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Font = new System.Drawing.Font("Microsoft YaHei", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.HideSelection = false;
-            this.textBox5.Location = new System.Drawing.Point(514, 636);
+            this.textBox5.Location = new System.Drawing.Point(430, 636);
             this.textBox5.Margin = new System.Windows.Forms.Padding(0);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
@@ -353,7 +362,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1353, 240);
+            this.panel4.Size = new System.Drawing.Size(1223, 240);
             this.panel4.TabIndex = 17;
             // 
             // EnquiryForm
@@ -362,7 +371,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1353, 853);
+            this.ClientSize = new System.Drawing.Size(1223, 804);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.pictureBox3);
@@ -377,8 +386,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TechnicalIssues)).EndInit();
+            this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -406,11 +416,11 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox TechnicalIssues;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Statement;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

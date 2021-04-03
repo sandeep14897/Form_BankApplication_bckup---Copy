@@ -85,7 +85,7 @@
             this.panel1.Font = new System.Drawing.Font("Microsoft YaHei", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(2, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.Size = new System.Drawing.Size(800, 478);
             this.panel1.TabIndex = 0;
             // 
             // SuccessLabel
@@ -314,7 +314,7 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.Font = new System.Drawing.Font("Microsoft YaHei", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.HideSelection = false;
-            this.textBox8.Location = new System.Drawing.Point(157, 607);
+            this.textBox8.Location = new System.Drawing.Point(157, 616);
             this.textBox8.Margin = new System.Windows.Forms.Padding(0);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
@@ -326,7 +326,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(363, 554);
+            this.pictureBox3.Location = new System.Drawing.Point(363, 563);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(62, 43);
@@ -340,7 +340,7 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.Font = new System.Drawing.Font("Microsoft YaHei", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox9.HideSelection = false;
-            this.textBox9.Location = new System.Drawing.Point(236, 498);
+            this.textBox9.Location = new System.Drawing.Point(236, 507);
             this.textBox9.Margin = new System.Windows.Forms.Padding(0);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";

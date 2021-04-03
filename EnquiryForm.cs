@@ -31,9 +31,8 @@ namespace Form_BankApplication
             InitializeComponent();
             TechnicalIssues.Visible = false;
             label3.Visible = false;
-            textBox1.Enabled = false;
+            pictureBox4.Visible = false;
         }
-
 
 
         // Amount Deposit function
@@ -61,11 +60,9 @@ namespace Form_BankApplication
                         String Query2 = "Update dbo.User_Data SET BalanceAmount= " + AmountDeposit + " Where Username = '" + Username + "'";
                         SqlCommand cmd2 = new SqlCommand(Query2, con);
                         cmd2.Parameters.AddWithValue("BalanceAmount", Convert.ToString(AmountDeposit));
-                        //String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
                         sdr.Close();
                         cmd2.ExecuteNonQuery();
                         label3.Text = "Amount: "+textBox2.Text+" Deposit successfully!";
-                        //MessageBox.Show("Amount : " + textBox2.Text + " Deposited succesfully");
                         label3.Visible = true;
                         textBox2.Text = "";
                     }
@@ -95,15 +92,18 @@ namespace Form_BankApplication
                 using (SqlDataReader sdr = cmd.ExecuteReader())
                 {
                     sdr.Read();
+                    textBox1.Enabled = true;
+                    //textBox1.Focus();
+                    textBox1.BackColor = Color.White;
                     textBox1.Text = "Rs. "+sdr["BalanceAmount"].ToString();
+                    pictureBox4.Visible = true;
                     textBox2.Text = "";
                     sdr.Close();
                 }
             }
             catch (Exception)
             {
-                //TechnicalIssues.Visible = true;
-                //MessageBox.Show("Exception occured");
+                TechnicalIssues.Visible = true;
             }
             con.Close();
         }
@@ -123,7 +123,6 @@ namespace Form_BankApplication
         private void button4_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
-            //MessageBox.Show(Username);
             String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
@@ -140,7 +139,6 @@ namespace Form_BankApplication
                     eForm.passingvalue1 = sdr["PhoneNumber"].ToString();
                     eForm.passingvalue2 = sdr["PinNumber"].ToString();
                     eForm.passingvalue3 = sdr["BalanceAmount"].ToString();
-                    //eForm.passingvalue4 = sdr[5];
                     sdr.Close();
                     Hide();
                     con.Close();
@@ -161,7 +159,6 @@ namespace Form_BankApplication
             Hide();
             SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             String Query = "Select * from dbo.User_Data Where Username = '" + Username + "'";
-            //MessageBox.Show(Username);
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
@@ -178,8 +175,7 @@ namespace Form_BankApplication
                     TForm.passingvalue = sdr["Username"].ToString();
                     TForm.passingvalue1 = sdr["PhoneNumber"].ToString();
                     TForm.passingvalue2 = sdr["PinNumber"].ToString();
-                    TForm.passingvalue3 = sdr["BalanceAmount"].ToString();
-                    
+                    TForm.passingvalue3 = sdr["BalanceAmount"].ToString();  
                 }
             }
             catch (Exception)
@@ -223,8 +219,6 @@ namespace Form_BankApplication
             }
             catch
             {
-                //pictureBox2.Image;
-                //TechnicalIssues.Visible = true;
             }
 
         }
@@ -238,7 +232,6 @@ namespace Form_BankApplication
                 FileStream fs = new FileStream(imgLoc, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
                 img = br.ReadBytes((int)fs.Length);
-                //MessageBox.Show(Username);
 
                 String UpdatePic = "Update dbo.User_Data SET UserImage= (@img) Where Username = '" + Username + "'";
                 SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
@@ -248,7 +241,7 @@ namespace Form_BankApplication
                 int i = comd.ExecuteNonQuery();
                 con.Close();
                 label3.Visible = true;
-                //MessageBox.Show("Saved");
+
             }
             catch
             {
@@ -300,7 +293,6 @@ namespace Form_BankApplication
                     String TimeStamp = row["TimeStamp1"].ToString();
                     String MessageLog = row["MessageLog"].ToString();
                     File.AppendAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\" + Username + "_Statement.txt", TimeStamp + "      |      " + MessageLog + Environment.NewLine);
-                    // File.WriteAllText(@"E:\C#\Form_BankApplication_bckup - Copy\LogFiles\"+Username+"_Statement.txt", String.Empty);
                 }
             }
             catch { 
@@ -309,6 +301,13 @@ namespace Form_BankApplication
 
         }
 
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = textBox1;
+            textBox1.UseSystemPasswordChar = false;
+            System.Threading.Thread.Sleep(3000);
+            textBox1.UseSystemPasswordChar = true;
+        }
     }
 }
 

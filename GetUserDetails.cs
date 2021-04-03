@@ -48,6 +48,7 @@ namespace Form_BankApplication
             //label7.Visible = false;
             label8.Visible = false;
             button3.Enabled = false;
+            pictureBox4.Visible = true;
         }
 
         private void GetUserDetails_Load(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace Form_BankApplication
                 textBox1.Text = GetUsername.TrimEnd();
                 textBox2.Text = GetPhoneNumber.TrimEnd();
                 textBox3.Text = GetPinNumber.TrimEnd();
-                textBox4.Text = GetBalanceAmount.TrimEnd();
+                textBox4.Text = "Rs. "+GetBalanceAmount.TrimEnd();
                 button2.Enabled = true;
                 //label3.Visible = false;
                 SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
@@ -251,9 +252,12 @@ namespace Form_BankApplication
             e1.Show();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
-
+            textBox4.Focus();
+            textBox4.UseSystemPasswordChar = false;
+            System.Threading.Thread.Sleep(3000);
+            textBox4.UseSystemPasswordChar = true;
         }
     }
 }

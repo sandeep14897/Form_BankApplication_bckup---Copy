@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
+using System.Windows;
 
 //[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
 
@@ -92,6 +93,13 @@ namespace Form_BankApplication
         {
             ExitApplication ea = new ExitApplication();
             ea.Show();
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            textBox2.UseSystemPasswordChar=false;
+            System.Threading.Thread.Sleep(3000);
+            textBox2.UseSystemPasswordChar = true;
         }
     }
 }
