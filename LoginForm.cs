@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
 using System.Windows;
+using System.Text;
 
 //[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
 
@@ -44,14 +45,15 @@ namespace Form_BankApplication
             cmd.CommandType = CommandType.Text;
             cmd.Connection = con;
             con.Open();
+            String password = "";
             using (SqlDataReader sdr = cmd.ExecuteReader())
             {
                 sdr.Read();
                 try
                 {
-                    if (sdr["PinNumber"].ToString().TrimEnd().Equals(textBox2.Text) && sdr["Username"].ToString().TrimEnd().Equals(textBox1.Text))
+                    password = encryptpass(textBox2.Text);
+                    if (sdr["PinNumber"].ToString().TrimEnd().Equals(password) && sdr["Username"].ToString().TrimEnd().Equals(textBox1.Text))
                     {
-
                         EnquiryForm eForm = new EnquiryForm();
                         eForm.passingvalue = textBox1.Text;
                         eForm.Show();
@@ -101,5 +103,14 @@ namespace Form_BankApplication
             System.Threading.Thread.Sleep(3000);
             textBox2.UseSystemPasswordChar = true;
         }
+
+        public string encryptpass(string password)
+        {
+            byte[] encode = Encoding.UTF8.GetBytes(password);
+            string msg = Convert.ToBase64String(encode);
+            return msg;
+        }
+
     }
+
 }

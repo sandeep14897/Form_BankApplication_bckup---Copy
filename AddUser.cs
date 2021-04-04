@@ -21,8 +21,10 @@ namespace Form_BankApplication
             InitializeComponent();
             SuccessLabel.Visible = false;
             EmptyFields.Visible = false;
+            textBox4.UseSystemPasswordChar = true;
             validCredentials.Visible = false;
         }
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -54,55 +56,71 @@ namespace Form_BankApplication
                 }
                 catch (Exception)
                 {
-                    con.Close();
-                    String Query = "INSERT INTO dbo.User_Data(Username,PhoneNumber,BalanceAmount,PinNumber) VALUES (@Username,@PhoneNumber,@BalanceAmount,@PinNumber)";
-                    SqlCommand cmd = new SqlCommand(Query, con);
-                    cmd.Connection = con;
-                    con.Open();
-                    cmd.Parameters.AddWithValue("Username", textBox1.Text);
-                    cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
-                    cmd.Parameters.AddWithValue("PinNumber", textBox3.Text);
-                    cmd.Parameters.AddWithValue("BalanceAmount", textBox4.Text);
+                    try{
+                        con.Close();
+                        String Query = "INSERT INTO dbo.User_Data(Username,PhoneNumber,BalanceAmount,PinNumber) VALUES (@Username,@PhoneNumber,@BalanceAmount,@PinNumber)";
+                        SqlCommand cmd = new SqlCommand(Query, con);
+                        cmd.Connection = con;
+                        con.Open();
+                        string strpass = encryptpass(textBox3.Text);
+                        cmd.Parameters.AddWithValue("Username", textBox1.Text);
+                        cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
+                        cmd.Parameters.AddWithValue("PinNumber", strpass);
+                        cmd.Parameters.AddWithValue("BalanceAmount", textBox4.Text);
+                        Console.WriteLine(textBox3.Text.TrimEnd().Length);
+                        Console.WriteLine(textBox3.Text.TrimEnd().Length != 6);
 
-                    if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox4.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 4 )
+                        if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox4.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 6)
 
-                    {
-                        SuccessLabel.Visible = false;
-                        EmptyFields.Visible = true;
-                        validCredentials.Visible = true;
+                        {
+                            SuccessLabel.Visible = false;
+                            EmptyFields.Visible = true;
+                            validCredentials.Visible = true;
+                            EmptyFields.Text = "Please, provide all the fields in correct format!";
+                            validCredentials.Text = "Phone number should have 10 digits Or Pin Number should have 6 digits !";
+                            textBox1.Text = "";
+                            textBox2.Text = "";
+                            textBox3.Text = "";
+                            textBox4.Text = "";
+                        }
+                        else
+                        {
+                            try
+                            {
+                               // String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
+                                cmd.ExecuteNonQuery();
+                                EmptyFields.Visible = false;
+                                SuccessLabel.Visible = true;
+                                validCredentials.Visible = false;
+                                SuccessLabel.Text = "User added Successfully";
+                                textBox1.Text = "";
+                                textBox2.Text = "";
+                                textBox3.Text = "";
+                                textBox4.Text = "";
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                                EmptyFields.Visible = false;
+                                SuccessLabel.Visible = false;
+                                validCredentials.Visible = false;
+                                SuccessLabel.Text = "Sorry!!! Error While registering the data of user. Please, try after sometime";
+                                textBox1.Text = "";
+                                textBox2.Text = "";
+                                textBox3.Text = "";
+                                textBox4.Text = "";
+                            }
+                        }
+                    }
+                    catch (Exception E){
                         EmptyFields.Text = "Please, provide all the fields in correct format!";
-                        validCredentials.Text = "Phone number should have 10 digits Or Pin Number should have 4 digits !";
+                        validCredentials.Text = "Phone number should have 10 digits Or Pin Number should have 6 digits !";
                         textBox1.Text = "";
                         textBox2.Text = "";
                         textBox3.Text = "";
                         textBox4.Text = "";
-                    }
-                    else
-                    {
-                        try
-                        {
-                            String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
-                            cmd.ExecuteNonQuery();
-                            EmptyFields.Visible = false;
-                            SuccessLabel.Visible = true;
-                            validCredentials.Visible = false;
-                            SuccessLabel.Text = "User added Successfully";
-                            textBox1.Text = "";
-                            textBox2.Text = "";
-                            textBox3.Text = "";
-                            textBox4.Text = "";
-
-                        }
-                        catch
-                        {
-                            EmptyFields.Visible = false;
-                            SuccessLabel.Visible = false;
-                            validCredentials.Visible = false;
-                            textBox1.Text = "";
-                            textBox2.Text = "";
-                            textBox3.Text = "";
-                            textBox4.Text = "";
-                        }
+                        //MessageBox.Show(E.Message);
                     }
                 }
             }
@@ -114,6 +132,24 @@ namespace Form_BankApplication
             Hide();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
+        }
+
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            textBox3.UseSystemPasswordChar = false;
+            System.Threading.Thread.Sleep(2000);
+            textBox3.UseSystemPasswordChar = true;
+        }
+
+        public string encryptpass(string password)
+        {
+            //string msg = "";
+            //int pass_Length = password.Length;
+            //byte[] encode = new byte[pass_Length];
+            byte[] encode = Encoding.UTF8.GetBytes(password);
+            string msg = Convert.ToBase64String(encode);
+            return msg;
         }
     }
 
