@@ -106,9 +106,11 @@
             // pinNumberText
             // 
             this.pinNumberText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.pinNumberText.Enabled = false;
             this.pinNumberText.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pinNumberText.Location = new System.Drawing.Point(355, 238);
             this.pinNumberText.Name = "pinNumberText";
+            this.pinNumberText.ReadOnly = true;
             this.pinNumberText.Size = new System.Drawing.Size(196, 20);
             this.pinNumberText.TabIndex = 19;
             // 
@@ -199,7 +201,9 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(202, 20);
             this.textBox1.TabIndex = 10;
-
+            // 
+            // label2
+            // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(351, 153);
             this.label2.Name = "label2";

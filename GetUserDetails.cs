@@ -51,6 +51,8 @@ namespace Form_BankApplication
             pictureBox4.Visible = true;
         }
 
+        String password = "";
+
         private void GetUserDetails_Load(object sender, EventArgs e)
         {
             try
@@ -58,6 +60,7 @@ namespace Form_BankApplication
                 EnquiryForm e1 = new EnquiryForm();
                 textBox1.Text = GetUsername.TrimEnd();
                 textBox2.Text = GetPhoneNumber.TrimEnd();
+                //password = encryptpass(GetPinNumber);
                 textBox3.Text = GetPinNumber.TrimEnd();
                 textBox4.Text = "Rs. "+GetBalanceAmount.TrimEnd();
                 button2.Enabled = true;
@@ -133,10 +136,10 @@ namespace Form_BankApplication
                 sdr.Read();
                 try
                 {
-                    if (sdr["Username"].ToString().Trim().Equals(textBox1.Text) && sdr["PhoneNumber"].ToString().Trim().Equals(textBox2.Text) && sdr["PinNumber"].ToString().Trim().Equals(textBox3.Text))
+                    password = encryptpass(textBox3.Text);
+                    if (sdr["Username"].ToString().Trim().Equals(textBox1.Text) && sdr["PhoneNumber"].ToString().Trim().Equals(textBox2.Text) && sdr["PinNumber"].ToString().Trim().Equals(password))
                     {
                         label6.Visible = false;
-                        //label7.Visible = false;
                         label8.Visible = false;
                         label5.Visible = true;
                         textBox2.Enabled = false;
@@ -147,27 +150,28 @@ namespace Form_BankApplication
                     else 
                     {
                         con.Close();
-                        String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + textBox3.Text + "' WHERE Username = '" + GetUsername + "'";
+                        String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + password + "' WHERE Username = '" + GetUsername + "'";
                         SqlCommand cmd = new SqlCommand(Query, con);
                         cmd.Connection = con;
                         con.Open();
+                       // password = encryptpass(textBox3.Text);
                         cmd.Parameters.AddWithValue("Username", textBox1.Text);
                         cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
-                        cmd.Parameters.AddWithValue("PinNumber", textBox3.Text);
+                        cmd.Parameters.AddWithValue("PinNumber", password);
 
-                        if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 4)
+                        if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 6)
                         {
                             label5.Visible = false;
                             label6.Visible = false;
                             label8.Visible = true;
                             //label7.Visible = true;
-                            label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 4 digits";
+                            label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 6 digits";
                         }
                         else
                         {
                             try
                             {
-                                String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
+                                //String Script = File.ReadAllText(@"C:\Users\HP\Documents\SQL Server Management Studio\BankApplicationUserData\BankApplicationUserData\Userdata.sql");
                                 cmd.ExecuteNonQuery();
                                 label5.Visible = false;
                                 //label7.Visible = false;
@@ -197,21 +201,21 @@ namespace Form_BankApplication
                 {
                     //MessageBox.Show("999999999999");
                     con.Close();
-                    String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + textBox3.Text + "' WHERE Username = '" + GetUsername + "'";
+                    String Query = "Update dbo.User_Data SET Username = '" + textBox1.Text + "',PhoneNumber='" + textBox2.Text + "', PinNumber='" + password + "' WHERE Username = '" + GetUsername + "'";
                     SqlCommand cmd = new SqlCommand(Query, con);
                     cmd.Connection = con;
                     con.Open();
                     cmd.Parameters.AddWithValue("Username", textBox1.Text);
                     cmd.Parameters.AddWithValue("PhoneNumber", textBox2.Text);
-                    cmd.Parameters.AddWithValue("PinNumber", textBox3.Text);
+                    cmd.Parameters.AddWithValue("PinNumber", password);
 
-                    if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 4)
+                    if (textBox1.Text.TrimEnd() == "" || textBox2.Text.TrimEnd() == "" || textBox3.Text.TrimEnd() == "" || textBox2.Text.TrimEnd().Length != 10 || textBox3.Text.TrimEnd().Length != 6)
                     {
                         label5.Visible = false;
                         label6.Visible = false;
                         label8.Visible = true;
                         //label7.Visible = true;
-                        label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 4 digits";
+                        label8.Text = "No fields should be empty! Phone number must be 10 digits and pin number must be 6 digits";
                         textBox1.Text = "";
                         textBox2.Text = "";
                         textBox3.Text = "";
@@ -258,6 +262,12 @@ namespace Form_BankApplication
             textBox4.UseSystemPasswordChar = false;
             System.Threading.Thread.Sleep(3000);
             textBox4.UseSystemPasswordChar = true;
+        }
+        public string encryptpass(string password)
+        {
+            byte[] encode = Encoding.UTF8.GetBytes(password);
+            string msg = Convert.ToBase64String(encode);
+            return msg;
         }
     }
 }

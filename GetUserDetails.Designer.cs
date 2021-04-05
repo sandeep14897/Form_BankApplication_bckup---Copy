@@ -55,6 +55,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.UserImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -142,9 +144,9 @@
             this.label3.Location = new System.Drawing.Point(472, 246);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 19);
+            this.label3.Size = new System.Drawing.Size(251, 19);
             this.label3.TabIndex = 49;
-            this.label3.Text = "Pin Number";
+            this.label3.Text = "Pin Number (Encrypted Format)";
             // 
             // label2
             // 
@@ -344,6 +346,22 @@
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.Color.White;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Tai Le", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox7.ForeColor = System.Drawing.Color.IndianRed;
+            this.textBox7.Location = new System.Drawing.Point(802, 252);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(417, 45);
+            this.textBox7.TabIndex = 71;
+            this.textBox7.Text = "NOTE: If you want to change he Pin Number, Then clear the encrypted pin number (p" +
+    "revious pin) data and give a new Pin Number";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // GetUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -353,6 +371,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1223, 804);
+            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -424,5 +443,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox textBox7;
     }
 }

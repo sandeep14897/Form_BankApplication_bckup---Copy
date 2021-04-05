@@ -37,9 +37,10 @@ namespace Form_BankApplication
                     if (sdr["PhoneNumber"].ToString().TrimEnd() == textBox2.Text && sdr["Username"].ToString().TrimEnd() == textBox1.Text)
                     {
                         String PinNumber = sdr["PinNumber"].ToString();
+                        String password = DecryptString(PinNumber);
                         WrongDetails.Visible = false;
                         pinNumberText.Enabled = false;
-                        pinNumberText.Text = PinNumber;
+                        pinNumberText.Text = password;
                         //MessageBox.Show("The Pin Number is : " + PinNumber);
                     }
                     else
@@ -70,6 +71,22 @@ namespace Form_BankApplication
             Hide();
             LoginForm loginform = new LoginForm();
             loginform.Show();
+        }
+
+        public string DecryptString(string encrString)
+        {
+            byte[] b;
+            string decrypted;
+            try
+            {
+                b = Convert.FromBase64String(encrString);
+                decrypted = System.Text.ASCIIEncoding.ASCII.GetString(b);
+            }
+            catch (Exception fe)
+            {
+                decrypted = "";
+            }
+            return decrypted;
         }
     }
 }

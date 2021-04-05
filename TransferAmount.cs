@@ -66,7 +66,7 @@ namespace Form_BankApplication
             success.Visible = false;
             insufficientLabel.Visible = false;
             Allrequired.Visible = false;
-            SqlConnection con = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+            SqlConnection con = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
             String Query = "Select * from dbo.User_Data Where Username = '" + textBox1.Text + "' AND PhoneNumber = '" + textBox2.Text + "'";
             SqlCommand cmd = new SqlCommand(Query, con);
             cmd.CommandType = CommandType.Text;
@@ -128,7 +128,7 @@ namespace Form_BankApplication
                                 Allrequired.Visible = false;
                                 con.Close();
                             }
-                                SqlConnection con2 = new SqlConnection(@"Server=localhost;Database=BankApplication;Trusted_Connection=True;");
+                                SqlConnection con2 = new SqlConnection(@"Server=localhost\MSSQLSERVER01;Database=BankApplication;Trusted_Connection=True;");
                                 con2.Open();
                                 String LogQuery1 = "Insert into dbo.MessageLog (Username, TimeStamp1, MessageLog) VALUES (@Username, @TimeStamp1, @MessageLog)";
                                 String LogQuery2 = "Insert into dbo.MessageLog (Username, TimeStamp1, MessageLog) VALUES (@Username, @TimeStamp1, @MessageLog)";
